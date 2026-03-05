@@ -1,0 +1,30 @@
+---
+- name: Test hour-based idempotency
+  hosts: local
+  gather_facts: yes
+  tasks:
+    - name: Create file with hour check (first time)
+      my_own_module:
+        path: /tmp/hour_test.txt
+        content: |
+          This file was created at {{ ansible_date_time.iso8601 }}
+          Some other content that might change
+        check_by_hour: true
+      register: result1
+
+    - name: Show first result
+      debug:
+        var: result1
+
+    - name: Create file with hour check (second time - same hour)
+      my_own_module:
+        path: /tmp/hour_test.txt
+        content: |
+          This file was created at {{ ansible_date_time.iso8601 }}
+          Different content here, but same hour!
+        check_by_hour: true
+      register: result2
+
+    - name: Show second result (should be changed=false)
+      debug:
+        var: result2

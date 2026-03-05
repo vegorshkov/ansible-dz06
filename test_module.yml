@@ -1,0 +1,19 @@
+---
+- name: Test my_own_module
+  hosts: local
+  gather_facts: no
+  tasks:
+    - name: Create a test file
+      my_own_module:
+        path: /tmp/ansible_test_file.txt
+        content: "Hello from Ansible module!\nThis is a test."
+    
+    - name: Check file content (should be changed=False second time)
+      my_own_module:
+        path: /tmp/ansible_test_file.txt
+        content: "Hello from Ansible module!\nThis is a test."
+    
+    - name: Update file with new content (should be changed=True)
+      my_own_module:
+        path: /tmp/ansible_test_file.txt
+        content: "Updated content\nNew line here"

@@ -1,0 +1,15 @@
+---
+- name: Single task playbook for my_own_module
+  hosts: local
+  gather_facts: yes
+  tasks:
+    - name: Create a file using my_own_module
+      my_own_module:
+        path: /tmp/single_task_test.txt
+        content: |
+          This file was created on {{ ansible_date_time.date }}
+      register: result
+
+    - name: Show module output
+      debug:
+        var: result

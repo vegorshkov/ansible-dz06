@@ -1,0 +1,1 @@
+/home/vgorshkov/STUDENT/ansible-dz06/my_own_module.py
