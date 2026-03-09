@@ -367,22 +367,78 @@ ELK — это популярный стек для логирования: Elas
 
 Шаг 13. Создайте .tar.gz этой collection: ansible-galaxy collection build в корневой директории collection.
 
+![alt text](image-25.png)
+
 Шаг 14. Создайте ещё одну директорию любого наименования, перенесите туда single task playbook и архив c collection.
+
+![alt text](image-26.png)
+![alt text](image-28.png)
 
 Шаг 15. Установите collection из локального архива: ansible-galaxy collection install <archivename>.tar.gz.
 
+![alt text](image-27.png)
+
 Шаг 16. Запустите playbook, убедитесь, что он работает.
+
+![alt text](image-29.png)
+![alt text](image-30.png)
+![alt text](image-31.png)
+![alt text](image-32.png)
+![alt text](image-33.png)
+![alt text](image-34.png)
+![alt text](image-35.png)
+![alt text](image-36.png)
+![alt text](image-37.png)
+
 
 Шаг 17. В ответ необходимо прислать ссылки на collection и tar.gz архив, а также скриншоты выполнения пунктов 4, 6, 15 и 16.
 Необязательная часть
 
-    Реализуйте свой модуль для создания хостов в Yandex Cloud.
-    Модуль может и должен иметь зависимость от yc, основной функционал: создание ВМ с нужным сайзингом на основе нужной ОС. Дополнительные модули по созданию кластеров ClickHouse, MySQL и прочего реализовывать не надо, достаточно простейшего создания ВМ.
-    Модуль может формировать динамическое inventory, но эта часть не является обязательной, достаточно, чтобы он делал хосты с указанной спецификацией в YAML.
-    Протестируйте модуль на идемпотентность, исполнимость. При успехе добавьте этот модуль в свою коллекцию.
-    Измените playbook так, чтобы он умел создавать инфраструктуру под inventory, а после устанавливал весь ваш стек Observability на нужные хосты и настраивал его.
-    В итоге ваша коллекция обязательно должна содержать: clickhouse-role (если есть своя), lighthouse-role, vector-role, два модуля: my_own_module и модуль управления Yandex Cloud хостами и playbook, который демонстрирует создание Observability стека.
+Скопируем роли
 
-Как оформить решение задания
+![alt text](image-38.png)
 
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
+![alt text](image-39.png)
+
+![alt text](image-40.png)
+
+![alt text](image-41.png)
+
+![alt text](image-42.png)
+
+![alt text](image-43.png)
+
+![alt text](image-44.png)
+
+![alt text](image-45.png)
+
+Требует sudo  выбирем параметр запуска с запросом пароля
+```
+ansible-playbook -i local_inventory.ini test_observability_fixed.yml -v --ask-become-pass
+```
+
+![alt text](image-46.png)
+
+![alt text](image-47.png)
+
+![alt text](image-48.png)
+
+Итог:
+
+![alt text](image-49.png)
+
+![alt text](image-50.png)
+
+![alt text](image-51.png)
+
+![alt text](image-52.png)
+
+![alt text](image-53.png)
+
+![alt text](image-54.png)
+
+![alt text](image-55.png)
+
+![alt text](image-56.png)
+
+Стек работает, ClickHouse и Vector установлен и запущен, Lighthouse запущен.

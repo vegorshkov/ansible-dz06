@@ -1,0 +1,53 @@
+---
+#Main installation actions
+#https://clickhouse.com/docs/en/getting-started/#installation
+
+- name: Install by APT | Update cache
+  apt:
+    update_cache: yes
+  become: false
+
+- name: Install by APT | Install dependencies
+  apt:
+    name:
+      - curl
+      - wget
+      - gnupg2
+      - apt-transport-https
+      - ca-certificates
+    state: present
+  become: false
+
+- name: Install by APT | Add ClickHouse GPG key
+  shell: |
+    curl -fsSL 'https://packages.clickhouse.com/rpm/lts/repodata/repomd.xml.key' | gpg --dearmor -o /usr/share/keyrings/clickhouse-keyring.gpg
+  args:
+    creates: /usr/share/keyrings/clickhouse-keyring.gpg
+  become: false
+
+- name: Install by APT | Add ClickHouse repository
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/clickhouse-keyring.gpg] https://packages.clickhouse.com/deb stable main"
+    state: present
+    update_cache: yes
+  become: false
+
+- name: Install by APT | Install ClickHouse
+  apt:
+    name:
+      - clickhouse-server
+      - clickhouse-client
+    state: present
+    update_cache: yes
+  become: false
+
+- name: Hold specified version during APT upgrade | Package installation
+  become: false
+  copy:
+    dest: "/etc/apt/preferences.d/fixed-clickhouse"
+    content: |
+      Package: clickhouse-server
+      Pin: release a=now
+      Pin-Priority: 1001
+  when: false  # Отключено, можно включить если нужно зафиксировать версию
+

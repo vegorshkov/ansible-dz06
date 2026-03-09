@@ -1,0 +1,15 @@
+---
+- name: Get vector distrib for Debian/Ubuntu
+  ansible.builtin.get_url:
+    url: "https://packages.timber.io/vector/{{ vector_version }}/vector_{{ vector_version }}-1_amd64.deb"
+    dest: "/tmp/vector-{{ vector_version }}.deb"
+    mode: '0644'
+  register: download_result
+
+- name: Install vector package
+  become: true
+  ansible.builtin.apt:
+    deb: "/tmp/vector-{{ vector_version }}.deb"
+    state: present
+#  notify: Start vector service
+

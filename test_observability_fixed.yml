@@ -1,0 +1,48 @@
+---
+- name: Test Observability Stack
+  hosts: localhost
+  connection: local
+  # become: yes  # временно отключаем
+  vars:
+    clickhouse_version: "24.3.3.102"
+    vector_version: "0.37.1"
+    lighthouse_version: "latest"
+    lighthouse_repo: "https://github.com/VKCOM/lighthouse.git"
+
+  collections:
+    - my_own_namespace.yandex_cloud_elk
+
+  pre_tasks:
+    - name: Update apt cache (Ubuntu/Debian)
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      when: ansible_os_family == "Debian"
+      ignore_errors: yes
+
+  roles:
+    - clickhouse
+    - vector
+    - lighthouse
+
+  post_tasks:
+    - name: Check services status
+      command: systemctl status clickhouse-server vector nginx
+      register: service_status
+      failed_when: false
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Display service status
+      debug:
+        msg: 
+          - "ClickHouse: {{ 'RUNNING' if 'active (running)' in service_status.stdout else 'STOPPED' }}"
+          - "Vector: {{ 'RUNNING' if 'active (running)' in service_status.stdout_lines[1] else 'STOPPED' }}"
+          - "Nginx: {{ 'RUNNING' if 'active (running)' in service_status.stdout_lines[2] else 'STOPPED' }}"
+
+    - name: Display access URLs
+      debug:
+        msg:
+          - "ClickHouse: http://{{ ansible_default_ipv4.address | default('localhost') }}:8123"
+          - "Vector: http://{{ ansible_default_ipv4.address | default('localhost') }}:8686"
+          - "Lighthouse: http://{{ ansible_default_ipv4.address | default('localhost') }}:8080"

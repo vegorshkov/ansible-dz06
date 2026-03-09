@@ -1,0 +1,28 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Check vector version
+      command: vector --version
+      register: vector_version
+      failed_when: vector_version.rc != 0
+      changed_when: false
+
+    - name: Check vector config
+      command: vector validate --no-environment --config-yaml /etc/vector/vector.yaml
+      register: vector_config
+      failed_when: vector_config.rc != 0
+      changed_when: false
+
+    - name: Check vector process
+      shell: ps aux | grep vector | grep -v grep
+      register: vector_process
+      failed_when: vector_process.rc != 0
+      changed_when: false
+
+    - name: Show vector process info
+      debug:
+        msg: "Vector process is running: {{ vector_process.stdout }}"
+      when: vector_process.rc == 0
+

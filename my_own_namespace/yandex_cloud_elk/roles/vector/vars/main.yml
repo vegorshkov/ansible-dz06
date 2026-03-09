@@ -1,0 +1,21 @@
+---
+vector_config:
+  sources:
+    logs:
+      type: file
+      read_from: beginning
+      ignore_older_secs: 600
+      include:
+        - /var/log/*.log
+
+  sinks:
+    to_clickhouse:
+      type: clickhouse
+      inputs:
+        - logs
+      endpoint: "http://localhost:8123"
+      database: default
+      table: logs
+      skip_unknown_fields: true
+      compression: gzip
+      healthcheck: false

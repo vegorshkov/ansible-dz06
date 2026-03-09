@@ -1,0 +1,12 @@
+sources:
+  dummy:
+    type: "demo_logs"
+    format: "syslog"
+    interval: 1.0
+sinks:
+  stdout:
+    type: "console"
+    inputs: ["dummy"]
+    encoding:
+      codec: "json"
+

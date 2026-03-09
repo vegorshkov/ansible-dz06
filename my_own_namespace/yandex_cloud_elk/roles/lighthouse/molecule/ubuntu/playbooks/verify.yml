@@ -1,0 +1,24 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Check nginx process is running
+      shell: ps aux | grep nginx | grep -v grep
+      register: nginx_process
+      failed_when: nginx_process.rc != 0
+      changed_when: false
+
+    - name: Check lighthouse files exist
+      stat:
+        path: /var/www/lighthouse/index.html
+      register: lighthouse_index
+      failed_when: not lighthouse_index.stat.exists
+
+    - name: Check lighthouse is accessible
+      uri:
+        url: http://localhost:8080
+        status_code: 200
+      register: lighthouse_response
+      failed_when: lighthouse_response.status != 200
+

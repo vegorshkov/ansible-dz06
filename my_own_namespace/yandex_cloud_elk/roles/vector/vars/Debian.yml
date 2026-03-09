@@ -1,0 +1,6 @@
+---
+vector_version: "0.34.0"  # или последнюю версию
+vector_config_dir: /etc/vector
+vector_user: vector
+vector_group: vector
+

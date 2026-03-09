@@ -1,0 +1,12 @@
+---
+- name: Prepare - Install Python and sudo
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install Python 3 and sudo
+      raw: |
+        apt-get update
+        apt-get install -y python3-minimal sudo
+      become: false
+      changed_when: false
+

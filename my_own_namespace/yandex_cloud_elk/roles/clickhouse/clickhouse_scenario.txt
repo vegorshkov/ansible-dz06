@@ -1,0 +1,265 @@
+vgorshkov@gid-000455:~/STUDENT/ansible-dz05/roles/clickhouse$ molecule test -s ubuntu_xenial
+WARNING  Driver docker does not provide a schema.
+INFO     ubuntu_xenial ➜ discovery: scenario test matrix: dependency, destroy, create, prepare, converge, verify, destroy
+INFO     ubuntu_xenial ➜ prerun: Performing prerun with role_name_check=0...
+WARNING  Another version of 'ansible.posix' 1.5.4 was found installed in /usr/lib/python3/dist-packages/ansible_collections, only the first one will be used, 2.1.0 (/home/vgorshkov/.ansible/collections/ansible_collections).
+WARNING  Another version of 'community.docker' 3.7.0 was found installed in /usr/lib/python3/dist-packages/ansible_collections, only the first one will be used, 5.0.6 (/home/vgorshkov/.ansible/collections/ansible_collections).
+WARNING  Another version of 'community.library_inventory_filtering_v1' 1.0.0 was found installed in /usr/lib/python3/dist-packages/ansible_collections, only the first one will be used, 1.1.5 (/home/vgorshkov/.ansible/collections/ansible_collections).
+INFO     ubuntu_xenial ➜ dependency: Executing
+WARNING  ubuntu_xenial ➜ dependency: Missing roles requirements file: requirements.yml
+WARNING  ubuntu_xenial ➜ dependency: Missing collections requirements file: collections.yml
+WARNING  ubuntu_xenial ➜ dependency: Executed: 2 missing (Remove from test_sequence to suppress)
+INFO     ubuntu_xenial ➜ destroy: Executing
+INFO     Sanity checks: 'docker'
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item=instance)
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+FAILED - RETRYING: [localhost]: Wait for instance(s) deletion to complete (300 retries left).
+changed: [localhost] => (item=instance)
+
+TASK [Delete docker networks(s)] ***********************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     ubuntu_xenial ➜ destroy: Executed: Successful
+INFO     ubuntu_xenial ➜ create: Executing
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+
+PLAY [Create] ******************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Log into a Docker registry] **********************************************
+skipping: [localhost] => (item=None) 
+skipping: [localhost]
+
+TASK [Check presence of custom Dockerfiles] ************************************
+ok: [localhost] => (item=instance)
+
+TASK [Create Dockerfiles from image names] *************************************
+skipping: [localhost] => (item=instance) 
+skipping: [localhost]
+
+TASK [Synchronization the context] *********************************************
+skipping: [localhost] => (item=instance) 
+skipping: [localhost]
+
+TASK [Discover local Docker images] ********************************************
+ok: [localhost] => (item=unix://var/run/docker.sock)
+
+TASK [Create docker network(s)] ************************************************
+skipping: [localhost]
+
+TASK [Build an Ansible compatible image (new)] *********************************
+skipping: [localhost] => (item=molecule_local/ubuntu:22.04) 
+skipping: [localhost]
+
+TASK [Determine the CMD directives] ********************************************
+ok: [localhost] => (item=instance)
+
+TASK [Create molecule instance(s)] *********************************************
+changed: [localhost] => (item=instance)
+
+TASK [Wait for instance(s) creation to complete] *******************************
+FAILED - RETRYING: [localhost]: Wait for instance(s) creation to complete (300 retries left).
+changed: [localhost] => (item=instance)
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=6    changed=2    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0
+
+INFO     ubuntu_xenial ➜ create: Executed: Successful
+INFO     ubuntu_xenial ➜ prepare: Executing
+
+PLAY [Prepare - Install Python and sudo] ***************************************
+
+TASK [Install Python 3 and sudo] ***********************************************
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+ok: [instance]
+
+PLAY RECAP *********************************************************************
+instance                   : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     ubuntu_xenial ➜ prepare: Executed: Successful
+INFO     ubuntu_xenial ➜ converge: Executing
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+ok: [instance]
+
+TASK [Include clickhouse role] *************************************************
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Include OS Family Specific Variables] ***
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : include_tasks] ***
+included: /home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse/tasks/precheck.yml for instance
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Requirements check | Checking sse4_2 support] ***
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Requirements check | Not supported distribution && release] ***
+skipping: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : include_tasks] ***
+included: /home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse/tasks/params.yml for instance
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Set clickhouse_service_enable] ***
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Set clickhouse_service_ensure] ***
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : include_tasks] ***
+included: /home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse/tasks/install/apt.yml for instance
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Install by APT | Update cache] ***
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Install by APT | Install dependencies] ***
+changed: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Install by APT | Add ClickHouse GPG key] ***
+changed: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Install by APT | Add ClickHouse repository] ***
+changed: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Install by APT | Install ClickHouse] ***
+changed: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Hold specified version during APT upgrade | Package installation] ***
+skipping: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Allow external connections to ClickHouse] ***
+changed: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : include_tasks] ***
+included: /home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse/tasks/configure/sys.yml for instance
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Check clickhouse config, data and logs] ***
+ok: [instance] => (item=/var/log/clickhouse-server)
+changed: [instance] => (item=/etc/clickhouse-server)
+changed: [instance] => (item=/var/lib/clickhouse/tmp/)
+changed: [instance] => (item=/var/lib/clickhouse/)
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Create config.d folder] ***
+changed: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Create users.d folder] ***
+changed: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Generate system config] ***
+changed: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Generate users config] ***
+changed: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Generate remote_servers config] ***
+skipping: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Generate macros config] ***
+skipping: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Generate zookeeper servers config] ***
+skipping: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Fix interserver_http_port and intersever_https_port collision] ***
+skipping: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Notify Handlers Now] ***
+
+RUNNING HANDLER [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Restart Clickhouse Service] ***
+ok: [instance]
+
+RUNNING HANDLER [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Restart clickhouse] ***
+changed: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : include_tasks] ***
+included: /home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse/tasks/service.yml for instance
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Check if systemd is running] ***
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Start ClickHouse server (with systemd)] ***
+skipping: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Start ClickHouse server (without systemd)] ***
+ASYNC OK on instance: jid=j90084089603.6322
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Wait for ClickHouse to start] ***
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Wait for Clickhouse Server to Become Ready] ***
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : include_tasks] ***
+included: /home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse/tasks/configure/db.yml for instance
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Set ClickHose Connection String] ***
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Gather list of existing databases] ***
+ok: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Delete database config] ***
+skipping: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Create database config] ***
+skipping: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : include_tasks] ***
+included: /home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse/tasks/configure/dict.yml for instance
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : Config | Generate dictionary config] ***
+skipping: [instance]
+
+TASK [/home/vgorshkov/STUDENT/ansible-dz05/roles/clickhouse : include_tasks] ***
+skipping: [instance]
+
+PLAY RECAP *********************************************************************
+instance                   : ok=31   changed=11   unreachable=0    failed=0    skipped=11   rescued=0    ignored=0
+
+INFO     ubuntu_xenial ➜ converge: Executed: Successful
+INFO     ubuntu_xenial ➜ verify: Executing
+WARNING  ubuntu_xenial ➜ verify: Executed: Missing playbook (Remove from test_sequence to suppress)
+INFO     ubuntu_xenial ➜ destroy: Executing
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item=instance)
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+FAILED - RETRYING: [localhost]: Wait for instance(s) deletion to complete (300 retries left).
+changed: [localhost] => (item=instance)
+
+TASK [Delete docker networks(s)] ***********************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     ubuntu_xenial ➜ destroy: Executed: Successful
+INFO     ubuntu_xenial ➜ scenario: Pruning extra files from scenario ephemeral directory
+WARNING  Molecule executed 1 scenario (1 missing files)
+vgorshkov@gid-000455:~/STUDENT/ansible-dz05/roles/clickhouse$ 
+vgorshkov@gid-000455:~/STUDENT/ansible-dz05/roles/clickhouse$ 
+vgorshkov@gid-000455:~/STUDENT/ansible-dz05/roles/clickhouse$ 

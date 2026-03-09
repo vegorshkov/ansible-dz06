@@ -1,0 +1,7 @@
+---
+lighthouse_version: master
+lighthouse_repo: https://github.com/VKCOM/lighthouse.git
+lighthouse_dest: /var/www/lighthouse
+lighthouse_port: 8080
+lighthouse_user: www-data
+lighthouse_group: www-data

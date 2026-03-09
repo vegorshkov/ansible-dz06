@@ -1,0 +1,27 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: ubuntu:22.04
+    pre_build_image: true
+provisioner:
+  name: ansible
+  playbooks:
+    converge: playbooks/converge.yml
+    prepare: playbooks/prepare.yml
+    verify: playbooks/verify.yml
+verifier:
+  name: ansible
+scenario:
+  name: ubuntu
+  test_sequence:
+    - dependency
+    - destroy
+    - create
+    - prepare
+    - converge
+    - verify
+    - destroy

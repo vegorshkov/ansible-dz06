@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include lighthouse role"
+      ansible.builtin.include_role:
+        name: /home/vgorshkov/STUDENT/ansible-dz05/roles/lighthouse
+

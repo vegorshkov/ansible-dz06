@@ -1,0 +1,25 @@
+---
+- name: Prepare - Install Python and dependencies
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Update apt cache
+      raw: apt-get update
+      become: false
+      changed_when: false
+      
+    - name: Install Python 3, sudo and ca-certificates
+      raw: apt-get install -y python3-minimal sudo ca-certificates
+      become: false
+      changed_when: false
+      
+    - name: Update CA certificates
+      raw: update-ca-certificates --fresh
+      become: false
+      changed_when: false
+      
+    - name: Create /opt/vector directory
+      raw: mkdir -p /opt/vector
+      become: false
+      changed_when: false
+

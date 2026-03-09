@@ -1,0 +1,15 @@
+---
+- name: Simple test of role from collection
+  hosts: local
+  gather_facts: yes
+  collections:
+    - my_own_namespace.yandex_cloud_elk
+  tasks:
+    - name: Include the role
+      ansible.builtin.include_role:
+        name: my_own_role
+      vars:
+        file_path: /tmp/simple_role_test.txt
+        file_content: |
+          This file was created by role from collection
+          Timestamp: {{ ansible_date_time.iso8601 }}

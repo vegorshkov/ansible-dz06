@@ -1,17 +1,19 @@
 namespace: my_own_namespace
 name: yandex_cloud_elk
-version: 1.0.0
+version: 3.0.0
 readme: README.md
 authors:
-  - Your Name <your.email@example.com>  # ← ваше имя
-description: Collection for Yandex Cloud ELK stack with custom modules
+  - Your Name <your.email@example.com>
+description: Collection for Yandex Cloud Observability stack
 license:
   - GPL-3.0-or-later
 tags:
   - yandex
   - cloud
-  - elk
-  - logging
+  - observability
+  - clickhouse
+  - lighthouse
+  - vector
 dependencies: {}
 repository: https://github.com/vegorshkov/ansible-dz06
 documentation: https://github.com/vegorshkov/ansible-dz06

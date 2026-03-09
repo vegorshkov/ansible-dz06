@@ -1,0 +1,59 @@
+---
+- name: Include OS-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Install vector for RedHat family
+  include_tasks: install-redhat.yml
+  when: ansible_os_family == "RedHat"
+
+- name: Install vector for Debian family
+  include_tasks: install-apt.yml
+  when: ansible_os_family == "Debian"
+
+- name: Configure vector
+  template:
+    src: vector.yaml.j2
+    dest: /etc/vector/vector.yaml
+    mode: '0644'
+
+- name: Try to start vector service (method 1 - background)
+  become: true
+  ansible.builtin.shell: |
+    nohup vector --config /etc/vector/vector.yaml > /var/log/vector.log 2>&1 &
+  args:
+    executable: /bin/bash
+  changed_when: false
+  register: vector_start_attempt1
+  ignore_errors: true
+  when: ansible_service_mgr != 'systemd'
+
+- name: Check if vector is running
+  shell: ps aux | grep vector | grep -v grep
+  register: vector_running
+  changed_when: false
+  ignore_errors: true
+  when: ansible_service_mgr != 'systemd'
+
+- name: Try to start vector service (method 2 - async) if not running
+  become: true
+  ansible.builtin.command: vector --config /etc/vector/vector.yaml
+  async: 10
+  poll: 0
+  changed_when: false
+  when: 
+    - ansible_service_mgr != 'systemd'
+    - vector_running.rc != 0
+
+- name: Wait for vector to start
+  wait_for:
+    timeout: 3
+  when: ansible_service_mgr != 'systemd'
+
+- name: Final check - verify vector is running
+  shell: ps aux | grep vector | grep -v grep
+  register: vector_final_check
+  failed_when: vector_final_check.rc != 0
+  changed_when: false
+  when: ansible_service_mgr != 'systemd'
+  
+  

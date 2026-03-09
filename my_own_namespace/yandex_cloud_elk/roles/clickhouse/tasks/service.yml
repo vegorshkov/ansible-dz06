@@ -1,0 +1,36 @@
+---
+- name: Check if systemd is running
+  command: systemctl is-system-running
+  register: systemd_status
+  changed_when: false
+  failed_when: false
+  check_mode: no
+  when: not clickhouse_remove|bool
+
+- name: Start ClickHouse server (with systemd)
+  systemd:
+    name: clickhouse-server
+    enabled: "{{ clickhouse_service_enable }}"
+    state: "{{ clickhouse_service_ensure }}"
+    daemon_reload: true
+  when:
+    - not clickhouse_remove|bool
+    - systemd_status.rc == 0
+
+- name: Start ClickHouse server (without systemd)
+  command: /usr/bin/clickhouse-server --config-file=/etc/clickhouse-server/config.xml
+  args:
+    creates: /var/run/clickhouse-server/clickhouse-server.pid
+  async: 10
+  poll: 2
+  when:
+    - not clickhouse_remove|bool
+    - systemd_status.rc != 0
+
+- name: Wait for ClickHouse to start
+  wait_for:
+    port: "{{ clickhouse_tcp_port }}"
+    delay: 3
+    timeout: 30
+  when: not clickhouse_remove|bool
+

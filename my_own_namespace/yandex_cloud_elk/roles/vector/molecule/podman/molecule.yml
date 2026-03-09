@@ -1,0 +1,31 @@
+---
+dependency:
+  name: galaxy
+  enabled: false
+  options:
+    timeout: 120
+    ignore-certs: true
+driver:
+  name: podman
+platforms:
+  - name: instance
+    image: ubuntu:22.04
+    pre_build_image: true
+provisioner:
+  name: ansible
+  playbooks:
+    converge: converge.yml
+    prepare: prepare.yml
+    verify: verify.yml
+verifier:
+  name: ansible
+scenario:
+  name: podman
+  test_sequence:
+    - dependency
+    - destroy
+    - create
+    - prepare
+    - converge
+    - verify
+    - destroy

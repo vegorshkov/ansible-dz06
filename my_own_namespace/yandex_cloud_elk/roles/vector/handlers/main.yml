@@ -1,0 +1,22 @@
+---
+#- name: Start vector service
+#  become: true
+#  ansible.builtin.shell: |
+#    set -e
+#    echo "Starting vector service..."
+#    nohup /usr/bin/vector --config /etc/vector/vector.yaml > /var/log/vector.log 2>&1 &
+#    sleep 3
+#    if pgrep -f "vector.*config" > /dev/null; then
+#      echo "Vector started successfully"
+#      exit 0
+#    else
+#      echo "Vector failed to start"
+#      cat /var/log/vector.log
+#      exit 1
+#    fi
+#  args:
+#    executable: /bin/bash
+#  register: vector_start
+#  changed_when: false
+#  failed_when: vector_start.rc != 0
+

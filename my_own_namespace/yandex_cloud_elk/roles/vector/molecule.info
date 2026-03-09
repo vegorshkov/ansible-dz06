@@ -1,0 +1,22 @@
+PLAY [Create a new molecule scenario]
+Это основной процесс создания файлов сценария. Он состоит из нескольких задач:
+
+Check if destination folder exists
+Molecule проверяет, есть ли папка molecule/default.
+
+Вывод changed — значит папка была создана.
+Check if destination folder is empty
+Molecule проверяет, пустая ли папка.
+
+ok — всё нормально, можно туда записывать файлы.
+Fail if destination folder is not empty
+
+Это проверка, чтобы не перезаписывать существующие файлы.
+skipping — папка пустая, поэтому Molecule пропускает эту проверку.
+
+Expand templates
+Molecule копирует шаблоны файлов сценария в папку molecule/default:
+converge.yml — главный playbook для применения роли на тестовой машине
+create.yml — инструкции для создания контейнера
+destroy.yml — инструкции для удаления контейнера после теста
+molecule.yml — конфигурационный файл сценария (описывает драйвер, платформы, провижн, тесты)
