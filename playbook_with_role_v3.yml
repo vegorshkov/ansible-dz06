@@ -1,0 +1,12 @@
+---
+- name: Test my_own_role from collection
+  hosts: local
+  gather_facts: yes
+  roles:
+    - my_own_namespace.yandex_cloud_elk.my_own_role
+  vars:
+    file_path: /tmp/playbook_role_test.txt
+    file_content: |
+      This file was created by playbook using role
+      Timestamp: {{ ansible_date_time.iso8601 }}
+      From playbook: playbook_with_role_v3.yml

@@ -1,0 +1,804 @@
+(venv) vgorshkov@gid-000455:~/STUDENT/ansible-dz06$ ansible-playbook -i inventory.ini single_task.yml
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing source of code and can become unstable at any point.
+
+PLAY [Single task playbook for my_own_module] ******************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************************
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/home/vgorshkov/STUDENT/ansible/venv/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/devel/reference_appendices/interpreter_discovery.html for more information.
+ok: [localhost]
+
+TASK [Create a file using my_own_module] ***********************************************************************************************************************************************
+[WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+[DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /home/vgorshkov/STUDENT/ansible-dz06/single_task.yml:9:18
+
+7       my_own_module:
+8         path: /tmp/single_task_test.txt
+9         content: |
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+changed: [localhost]
+
+TASK [Show module output] **************************************************************************************************************************************************************
+ok: [localhost] => {
+    "result": {
+        "changed": true,
+        "deprecations": [
+            {
+                "collection_name": "ansible.builtin",
+                "deprecator": {
+                    "resolved_name": "ansible.builtin",
+                    "type": null
+                },
+                "msg": "INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change.",
+                "version": "2.24"
+            }
+        ],
+        "directory_listing": [
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:19:07",
+                "modified_timestamp": 1772705947.409889,
+                "name": ".ICE-unix",
+                "owner": "root",
+                "permissions": "777",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 13:19:07",
+                "modified_timestamp": 1772705947.9728904,
+                "name": ".X0-lock",
+                "owner": "vgorshkov",
+                "permissions": "444",
+                "size": 11,
+                "type": "file"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 13:19:07",
+                "modified_timestamp": 1772705947.973554,
+                "name": ".X1-lock",
+                "owner": "vgorshkov",
+                "permissions": "444",
+                "size": 11,
+                "type": "file"
+            },
+            {
+                "group": "gdm",
+                "modified": "2026-03-05 13:14:22",
+                "modified_timestamp": 1772705662.9793844,
+                "name": ".X1024-lock",
+                "owner": "gdm",
+                "permissions": "444",
+                "size": 11,
+                "type": "file"
+            },
+            {
+                "group": "gdm",
+                "modified": "2026-03-05 13:14:22",
+                "modified_timestamp": 1772705662.981036,
+                "name": ".X1025-lock",
+                "owner": "gdm",
+                "permissions": "444",
+                "size": 11,
+                "type": "file"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:19:07",
+                "modified_timestamp": 1772705947.973554,
+                "name": ".X11-unix",
+                "owner": "root",
+                "permissions": "777",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:13",
+                "modified_timestamp": 1772705653.3326743,
+                "name": ".XIM-unix",
+                "owner": "root",
+                "permissions": "777",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:13",
+                "modified_timestamp": 1772705653.3328683,
+                "name": ".font-unix",
+                "owner": "root",
+                "permissions": "777",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 23:16:52",
+                "modified_timestamp": 1772741812.9605494,
+                "name": "ansible_my_own_module_payload_icy1aoga",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 16:51:04",
+                "modified_timestamp": 1772718664.4392135,
+                "name": "ansible_test_file.txt",
+                "owner": "vgorshkov",
+                "permissions": "664",
+                "size": 29,
+                "type": "file"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 22:21:23",
+                "modified_timestamp": 1772738483.9216497,
+                "name": "exthost-e6dbd1.cpuprofile",
+                "owner": "vgorshkov",
+                "permissions": "664",
+                "size": 709777,
+                "type": "file"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 15:53:42",
+                "modified_timestamp": 1772715222.867428,
+                "name": "gitkraken",
+                "owner": "vgorshkov",
+                "permissions": "775",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 14:31:06",
+                "modified_timestamp": 1772710266.1705937,
+                "name": "keepassxc-vgorshkov.lock",
+                "owner": "vgorshkov",
+                "permissions": "664",
+                "size": 96,
+                "type": "file"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 14:31:06",
+                "modified_timestamp": 1772710266.1775937,
+                "name": "keepassxc-vgorshkov.socket",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 0,
+                "type": "other"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 15:45:31",
+                "modified_timestamp": 1772714731.7748783,
+                "name": "mc-vgorshkov",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 16:22:06",
+                "modified_timestamp": 1772716926.4876823,
+                "name": "pyright-17727-if2XF0esaW9g",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 16:22:00",
+                "modified_timestamp": 1772716920.7166784,
+                "name": "python-languageserver-cancellation",
+                "owner": "vgorshkov",
+                "permissions": "775",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 23:16:53",
+                "modified_timestamp": 1772741813.1629744,
+                "name": "single_task_test.txt",
+                "owner": "vgorshkov",
+                "permissions": "664",
+                "size": 36,
+                "type": "file"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 15:38:59",
+                "modified_timestamp": 1772714339.2511315,
+                "name": "snap-private-tmp",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 16:11:08",
+                "modified_timestamp": 1772716268.8382711,
+                "name": "ssh-4gqk49nX8xHs",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 15:45:31",
+                "modified_timestamp": 1772714731.8068786,
+                "name": "ssh-DBCnsDt8Kh0u",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 13:20:05",
+                "modified_timestamp": 1772706005.7260633,
+                "name": "ssh-b6yD6Z9tQKtw",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 16:22:00",
+                "modified_timestamp": 1772716920.4416378,
+                "name": "ssh-gMbtM5P2KTMp",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:16",
+                "modified_timestamp": 1772705656.1393847,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-ModemManager.service-e0dzAs",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:19",
+                "modified_timestamp": 1772705659.6513846,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-bluetooth.service-mgnjvf",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:23",
+                "modified_timestamp": 1772705663.1223843,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-colord.service-IJguHn",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:25:10",
+                "modified_timestamp": 1772706310.549372,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-fwupd.service-0fvy23",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:15",
+                "modified_timestamp": 1772705655.0373847,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-polkit.service-w0Cl5i",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:15",
+                "modified_timestamp": 1772705655.0452404,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-power-profiles-daemon.service-vSRaBb",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:15",
+                "modified_timestamp": 1772705655.0793848,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-switcheroo-control.service-FIVF7H",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:15",
+                "modified_timestamp": 1772705655.1033847,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-systemd-logind.service-E7WKag",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:13",
+                "modified_timestamp": 1772705653.3463848,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-systemd-oomd.service-bY33Oy",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:13",
+                "modified_timestamp": 1772705653.3553848,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-systemd-resolved.service-lvejLh",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:13",
+                "modified_timestamp": 1772705653.364385,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-systemd-timesyncd.service-uZumXj",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:24",
+                "modified_timestamp": 1772705664.1093843,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-upower.service-PKRjqt",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            }
+        ],
+        "directory_path": "/tmp",
+        "failed": false,
+        "message": "File created/updated successfully",
+        "original_content": "This file was created on 2026-03-05\n",
+        "original_path": "/tmp/single_task_test.txt"
+    }
+}
+
+PLAY RECAP *****************************************************************************************************************************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+(venv) vgorshkov@gid-000455:~/STUDENT/ansible-dz06$ ansible-playbook -i inventory.ini single_task.yml
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing source of code and can become unstable at any point.
+
+PLAY [Single task playbook for my_own_module] ******************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************************
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/home/vgorshkov/STUDENT/ansible/venv/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/devel/reference_appendices/interpreter_discovery.html for more information.
+ok: [localhost]
+
+TASK [Create a file using my_own_module] ***********************************************************************************************************************************************
+[WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+[DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /home/vgorshkov/STUDENT/ansible-dz06/single_task.yml:9:18
+
+7       my_own_module:
+8         path: /tmp/single_task_test.txt
+9         content: |
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+ok: [localhost]
+
+TASK [Show module output] **************************************************************************************************************************************************************
+ok: [localhost] => {
+    "result": {
+        "changed": false,
+        "deprecations": [
+            {
+                "collection_name": "ansible.builtin",
+                "deprecator": {
+                    "resolved_name": "ansible.builtin",
+                    "type": null
+                },
+                "msg": "INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change.",
+                "version": "2.24"
+            }
+        ],
+        "directory_listing": [
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:19:07",
+                "modified_timestamp": 1772705947.409889,
+                "name": ".ICE-unix",
+                "owner": "root",
+                "permissions": "777",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 13:19:07",
+                "modified_timestamp": 1772705947.9728904,
+                "name": ".X0-lock",
+                "owner": "vgorshkov",
+                "permissions": "444",
+                "size": 11,
+                "type": "file"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 13:19:07",
+                "modified_timestamp": 1772705947.973554,
+                "name": ".X1-lock",
+                "owner": "vgorshkov",
+                "permissions": "444",
+                "size": 11,
+                "type": "file"
+            },
+            {
+                "group": "gdm",
+                "modified": "2026-03-05 13:14:22",
+                "modified_timestamp": 1772705662.9793844,
+                "name": ".X1024-lock",
+                "owner": "gdm",
+                "permissions": "444",
+                "size": 11,
+                "type": "file"
+            },
+            {
+                "group": "gdm",
+                "modified": "2026-03-05 13:14:22",
+                "modified_timestamp": 1772705662.981036,
+                "name": ".X1025-lock",
+                "owner": "gdm",
+                "permissions": "444",
+                "size": 11,
+                "type": "file"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:19:07",
+                "modified_timestamp": 1772705947.973554,
+                "name": ".X11-unix",
+                "owner": "root",
+                "permissions": "777",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:13",
+                "modified_timestamp": 1772705653.3326743,
+                "name": ".XIM-unix",
+                "owner": "root",
+                "permissions": "777",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:13",
+                "modified_timestamp": 1772705653.3328683,
+                "name": ".font-unix",
+                "owner": "root",
+                "permissions": "777",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 23:16:56",
+                "modified_timestamp": 1772741816.7979457,
+                "name": "ansible_my_own_module_payload_4_nb3gnu",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 16:51:04",
+                "modified_timestamp": 1772718664.4392135,
+                "name": "ansible_test_file.txt",
+                "owner": "vgorshkov",
+                "permissions": "664",
+                "size": 29,
+                "type": "file"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 22:21:23",
+                "modified_timestamp": 1772738483.9216497,
+                "name": "exthost-e6dbd1.cpuprofile",
+                "owner": "vgorshkov",
+                "permissions": "664",
+                "size": 709777,
+                "type": "file"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 15:53:42",
+                "modified_timestamp": 1772715222.867428,
+                "name": "gitkraken",
+                "owner": "vgorshkov",
+                "permissions": "775",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 14:31:06",
+                "modified_timestamp": 1772710266.1705937,
+                "name": "keepassxc-vgorshkov.lock",
+                "owner": "vgorshkov",
+                "permissions": "664",
+                "size": 96,
+                "type": "file"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 14:31:06",
+                "modified_timestamp": 1772710266.1775937,
+                "name": "keepassxc-vgorshkov.socket",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 0,
+                "type": "other"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 15:45:31",
+                "modified_timestamp": 1772714731.7748783,
+                "name": "mc-vgorshkov",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 16:22:06",
+                "modified_timestamp": 1772716926.4876823,
+                "name": "pyright-17727-if2XF0esaW9g",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 16:22:00",
+                "modified_timestamp": 1772716920.7166784,
+                "name": "python-languageserver-cancellation",
+                "owner": "vgorshkov",
+                "permissions": "775",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 23:16:53",
+                "modified_timestamp": 1772741813.1629744,
+                "name": "single_task_test.txt",
+                "owner": "vgorshkov",
+                "permissions": "664",
+                "size": 36,
+                "type": "file"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 15:38:59",
+                "modified_timestamp": 1772714339.2511315,
+                "name": "snap-private-tmp",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 16:11:08",
+                "modified_timestamp": 1772716268.8382711,
+                "name": "ssh-4gqk49nX8xHs",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 15:45:31",
+                "modified_timestamp": 1772714731.8068786,
+                "name": "ssh-DBCnsDt8Kh0u",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 13:20:05",
+                "modified_timestamp": 1772706005.7260633,
+                "name": "ssh-b6yD6Z9tQKtw",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "vgorshkov",
+                "modified": "2026-03-05 16:22:00",
+                "modified_timestamp": 1772716920.4416378,
+                "name": "ssh-gMbtM5P2KTMp",
+                "owner": "vgorshkov",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:16",
+                "modified_timestamp": 1772705656.1393847,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-ModemManager.service-e0dzAs",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:19",
+                "modified_timestamp": 1772705659.6513846,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-bluetooth.service-mgnjvf",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:23",
+                "modified_timestamp": 1772705663.1223843,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-colord.service-IJguHn",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:25:10",
+                "modified_timestamp": 1772706310.549372,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-fwupd.service-0fvy23",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:15",
+                "modified_timestamp": 1772705655.0373847,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-polkit.service-w0Cl5i",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:15",
+                "modified_timestamp": 1772705655.0452404,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-power-profiles-daemon.service-vSRaBb",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:15",
+                "modified_timestamp": 1772705655.0793848,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-switcheroo-control.service-FIVF7H",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:15",
+                "modified_timestamp": 1772705655.1033847,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-systemd-logind.service-E7WKag",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:13",
+                "modified_timestamp": 1772705653.3463848,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-systemd-oomd.service-bY33Oy",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:13",
+                "modified_timestamp": 1772705653.3553848,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-systemd-resolved.service-lvejLh",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:13",
+                "modified_timestamp": 1772705653.364385,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-systemd-timesyncd.service-uZumXj",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            },
+            {
+                "group": "root",
+                "modified": "2026-03-05 13:14:24",
+                "modified_timestamp": 1772705664.1093843,
+                "name": "systemd-private-9c63d38ba5a548e09ac4a25a839d5735-upower.service-PKRjqt",
+                "owner": "root",
+                "permissions": "700",
+                "size": 4096,
+                "type": "directory"
+            }
+        ],
+        "directory_path": "/tmp",
+        "failed": false,
+        "message": "File already exists with the same content, no changes made",
+        "original_content": "This file was created on 2026-03-05\n",
+        "original_path": "/tmp/single_task_test.txt"
+    }
+}
+
+PLAY RECAP *****************************************************************************************************************************************************************************
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+(venv) vgorshkov@gid-000455:~/STUDENT/ansible-dz06$ 
+

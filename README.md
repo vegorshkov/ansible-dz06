@@ -321,21 +321,49 @@ localhost                  : ok=3    changed=1    unreachable=0    failed=0    s
 (venv) vgorshkov@gid-000455:~/STUDENT/ansible-dz06$ 
 
 ```
+Вывод playbook изменил контент с даты (с минутами и секундами), на просто время {{ ansible_date_time.date }} текущий день. 
+[text](идемпотентность.txt)
 
-
-
+![alt text](image-15.png)
 
 Шаг 7. Выйдите из виртуального окружения.
 
+![alt text](image-16.png)
+
 Шаг 8. Инициализируйте новую collection: ansible-galaxy collection init my_own_namespace.yandex_cloud_elk.
+
+ELK — это популярный стек для логирования: Elasticsearch + Logstash + Kibana
+
+![alt text](image-17.png)
+
+![alt text](image-18.png)
 
 Шаг 9. В эту collection перенесите свой module в соответствующую директорию.
 
+![alt text](image-19.png)
+
 Шаг 10. Single task playbook преобразуйте в single task role и перенесите в collection. У role должны быть default всех параметров module.
+
+![alt text](image-20.png)
+
+![alt text](image-21.png)
 
 Шаг 11. Создайте playbook для использования этой role.
 
+![alt text](image-22.png)
+
+![alt text](image-23.png)
+
+![alt text](image-24.png)
+
 Шаг 12. Заполните всю документацию по collection, выложите в свой репозиторий, поставьте тег 1.0.0 на этот коммит.
+
+Структура документации коллекции
+1. galaxy.yml — мета-информация о коллекции 
+2. README.md — пользовательская документация
+3. Документация модуля (в самом модуле)
+
+Все сохранено: 
 
 Шаг 13. Создайте .tar.gz этой collection: ansible-galaxy collection build в корневой директории collection.
 
